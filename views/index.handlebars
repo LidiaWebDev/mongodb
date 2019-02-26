@@ -1,111 +1,188 @@
-<link rel="stylesheet" href="/public/style.css" />
-
-{{#each articles}}
-
-<ul class="collapsible" data-collapsible="accordion">
-
-    <!-- Article Drop Down -->
-    <li>
-        <div style="background-color: white;" class="collapsible-header blue lighten-2">
-            <i class="material-icons">language</i> <b>{{updated}}</b>
-            <div style="clear: left; line-height: 110%; padding-bottom: 10px;"><b>{{title}}</b></div>
-        </div>
-        <div class="collapsible-body" style="background-color: white;">
-            <p>
-                {{summary}}
-
-                <br><br>
-
-                <i>Please read the full article <a href="{{link}}" target="_new">here</a>.</i>
-            </p>
-
-        </div>
-    </li>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
 
-    <!-- Add Comments Drop Down -->
-    <li>
-        <div class="collapsible-header"><i class="material-icons">comment</i>Add a Note</div>
-        <div class="collapsible-body" style="background-color: white;">
+<main>
+    <div class="container">
+        <ul class="collection with-header">
+            <li class="collection-header indigo accent-4 ">
+                <h4><b>Mongodb</b></h4>
+            </li>
+            <li class="collection-item">
+                This application lets you read and comment on news articles that
+                were scrapped from the web.
+                {{!-- </li>
+            <li class="collection-item">
+                <div>
+                    Click <i class="material-icons">language</i> to view an article.
+                </div>
+            </li>
+            <li class="collection-item">
+                <div>
+                    Click <i class="material-icons">comment</i> to add a comment.
+                </div>
+            </li>
+            <li class="collection-item">
+                <div>
+                    Click <i class="material-icons">thumbs_up_down</i> to read
+                    comments.
+                </div>
+            </li> --}}
+        </ul>
 
-            <form id="form-add-{{_id}}" action="add/note/{{_id}}" method="post" style="background-color: white;">
 
-                <!-- Author Name Input -->
-                <div class="row">
-                    <div class="input-field col s2"></div>
-                    <div class="input-field col s8">
-                        <input id="author_name" name="name" type="text" class="validate">
-                        <label for="author_name">Your Name:</label>
+        {{#each articles}}
+
+        <ul class="collapsible" data-collapsible="accordion">
+
+            <!-- Article Drop Down -->
+            <li>
+                <div style="background-color: white;" class="collapsible-header blue lighten-2">
+                    <i class="material-icons">library_books</i><b>{{updated}}</b>
+                    <div style="clear: left; line-height: 110%; padding-bottom: 10px;"><b>
+                            <p>
+                                <a class="button-collapse" data-toggle="collapse" href="#collapseExample" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample">
+                                    {{title}}
+                                </a>
+                            </p>
+                        </b></div>
+
+
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid.
+                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                            proident.
+                        </div>
+                    </div>
+
+                </div>
+                <div style="background-color: white;" class="collapsible-header blue lighten-2">
+                    <i class="material-icons">library_books</i></a>
+                    <div style="clear: left; line-height: 110%; padding-bottom: 10px;"><a>{{image}}</a>
                     </div>
                 </div>
 
-                <!-- Note Input -->
-                <div class="row">
-                    <div class="input-field col s2"></div>
-                    <div class="input-field col s8">
-                        <textarea id="note_box" name="note" class="materialize-textarea"></textarea>
-                        <label for="note_box">Your Reaction:</label>
-                    </div>
+                {{link}}
+
+
+
+
+                <div class="collapsible-body" style="background-color: white;">
+
+                    <p>
+                        {{summary}}
+
+                        <br><br>
+
+                        <i>Please read the full article <a href="{{link}}" target="_new">here</a>.</i>
+                    </p>
+
                 </div>
+            </li>
 
-                <!-- Submit Button -->
-                <div class="row">
-                    <div class="input-field col s2"></div>
-                    <div class="input-field col s8">
-                        <center><input class="btn add-note-button" data-id="{{_id}}" type="submit" value="Submit">
-                        </center>
-                    </div>
+            <!-- Add Comments Drop Down -->
+            <li>
+                <div class="collapsible-header"><i class="material-icons">create</i>Add a Note</div>
+                <div class="collapsible-body" style="background-color: white;">
+
+                    <form id="form-add-{{_id}}" action="add/note/{{_id}}" method="post"
+                        style="background-color: white;">
+
+                        <!-- Author Name Input -->
+                        <div class="row">
+                            <div class="input-field col s2"></div>
+                            <div class="input-field col s8">
+                                <input id="author_name" name="name" type="text" class="validate">
+                                <label for="author_name">Your Name:</label>
+                            </div>
+                        </div>
+
+                        <!-- Note Input -->
+                        <div class="row">
+                            <div class="input-field col s2"></div>
+                            <div class="input-field col s8">
+                                <textarea id="note_box" name="note" class="materialize-textarea"></textarea>
+                                <label for="note_box">Your Reaction:</label>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="row">
+                            <div class="input-field col s2"></div>
+                            <div class="input-field col s8">
+                                <center><input class="btn add-note-button" data-id="{{_id}}" type="submit"
+                                        value="Submit">
+                                </center>
+                            </div>
+                        </div>
+
+                    </form>
+
                 </div>
-
-            </form>
-
-        </div>
-    </li>
+            </li>
 
 
-    <!-- View Comments Drop Down -->
-    <li>
-        <div class="collapsible-header"><i class="material-icons">thumbs_up_down</i>View Notes</div>
-        <div class="collapsible-body" style="background-color: white;">
+            <!-- View Comments Drop Down -->
+            <li>
+                <div class="collapsible-header"><i class="material-icons">visibility</i>View Notes</div>
+                <div class="collapsible-body" style="background-color: white;">
 
-            {{!-- Check if the article has notes --}}
-            {{#if notes}}
+                    {{!-- Check if the article has notes --}}
+                    {{#if notes}}
 
-            {{!-- Article has notes so iterate over them  --}}
-            <ul class="collection">
-                {{#each notes}}
+                    {{!-- Article has notes so iterate over them  --}}
+                    <ul class="collection">
+                        {{#each notes}}
 
-                <li class="collection-item">
+                        <li class="collection-item">
 
-                    {{!-- Add Author Name --}}
-                    <b>{{author}}</b>
+                            {{!-- Add Author Name --}}
+                            <b>{{author}}</b>
 
-                    {{!-- Add a Delete Button --}}
-                    <span class="badge">
-                        <form id="form-delete-{{_id}}" action="remove/comment/{{_id}}" method="post">
-                            <input class="btn-small delete-note-button" data-id="{{_id}}" type="submit" value="Delete"
-                                style="color: white; background-color: red; border-color: red;">
-                        </form>
-                    </span>
+                            {{!-- Add a Delete Button --}}
+                            <span class="badge">
+                                <form id="form-delete-{{_id}}" action="remove/comment/{{_id}}" method="post">
+                                    <input class="btn-small delete-note-button" data-id="{{_id}}" type="submit"
+                                        value="Delete" style="color: white; background-color: red; border-color: red;">
+                                </form>
+                            </span>
 
-                    <br>
+                            <br>
 
-                    {{!-- Add the Content of the Comment --}}
-                    {{content}}
+                            {{!-- Add the Content of the Comment --}}
+                            {{content}}
 
-                </li>
-                {{/each}}
-            </ul>
+                        </li>
+                        {{/each}}
+                    </ul>
 
-            {{!-- No notes, so display message --}}
-            {{else}}
-            <p>No Notes Yet :( </p>
-            {{/if}}
+                    {{!-- No notes, so display message --}}
+                    {{else}}
+                    <p>No Notes Yet :( </p>
+                    {{/if}}
 
 
-        </div>
-    </li>
+                </div>
+            </li>
 
-</ul>
-{{/each}}
-<h1>TEST</h1>
+        </ul>
+        {{/each}}
+        <!-- Footer -->
+        <footer class="page-footer teal darken-3">
+            <div class="center-align">
+                <div class="container grey-text text-lighten-2">
+                    All article data was web scraped from
+                    <a class="grey-text text-lighten-2" href="http:/">https://www.pe.com</a>
+                </div>
+            </div>
+        </footer>
+        <!-- Link in jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+
+    </div>
+</main>

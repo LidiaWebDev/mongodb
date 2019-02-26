@@ -11,8 +11,6 @@ var cheerio = require("cheerio"); // for web-scraping
 mongoose.Promise = Promise;
 
 // Import the Comment and Article models
-// var Note = require("../models/Note.js");
-// var Article = require("../models/Article.js");
 const db = require("../models");
 
 // Index Page Render (first visit to the site)
@@ -22,7 +20,8 @@ router.get("/", function(req, res) {
     articles: "TEST1"
   };
   //res.render("articles", hbsObject);
-  res.render("index", hbsObject);
+  res.render("main", hbsObject);
+  res.redirect("/Articles");
   //res.json({ message: "hello scraping news" });
   // Scrape data
   // res.redirect("/articles");
@@ -53,20 +52,34 @@ function scrape() {
     console.log($);
     $("span.dfm-title").each(function(i, element) {
       let result = {};
-      result.title = $(this).text();
-      // result.content = $(this)
+      result.title = $(element)
+        .text()
+        .trim();
+      // result.summary = $(this)
+      //   .children(".summary")
+      //   .text();
+
+      // result.link = $(element)
+      //   .find("a.article-title")
+      //   .attr("href");
+
       //   .children("header")
       //   .children("h2")
       //   .children("p")
       //   .text();
-      result.imgLink = $(this).children();
+      // result.imgLink = $(this).children();
       db.Article.create(result).then(function(Article) {
         console.log(Article);
       });
     });
   });
 }
+// $("a.article-title").each(function(i, element) {
+//   let result = {};
+//   result.link = $(element).attr("href");
+// });
 scrape();
+
 // router.get("/scrape", function(req, res) {
 //   // First, grab the body of the html with request
 //   request("https://www.pe.com", function(error, response, html) {

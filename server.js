@@ -53,7 +53,7 @@ app.set("view engine", "handlebars");
 // app.set("views", path.join(__dirname, "views"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/news", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/Articles", { useNewUrlParser: true });
 var db = mongoose.connection;
 // Mongoose errors if does not connect
 db.on("error", function(error) {
